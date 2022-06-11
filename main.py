@@ -1,16 +1,53 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def draw_board():
+    pass
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def spawn_number():
+    pass
 
 
-# Press the green button in the gutter to run the script.
+def specify_direction():
+    return True
+
+
+def shift_numbers():
+    pass
+
+
+def combine_numbers():
+    pass
+
+
+def check_if_board_full():
+    return True
+
+
+def check_if_adjacent_num():
+    return True
+
+
+def present_endgame():
+    pass
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    draw_board()
+    spawn_number()
+    spawn_number()
+    while True:
+        while True:
+            direction = specify_direction()
+            if direction:
+                break
+        shift_numbers()
+        combine_numbers()
+        shift_numbers()
+        if check_if_board_full():
+            if check_if_adjacent_num():
+                continue
+            else:
+                break
+        else:
+            spawn_number()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    present_endgame()
