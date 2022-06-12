@@ -1,9 +1,46 @@
+import random
+
+# Generating the storage for the 4x4 board
+board = [[0, 0, 0, 0],
+         [0, 0, 0, 0],
+         [0, 0, 0, 0],
+         [0, 0, 0, 0]]
+
+
 def draw_board():
-    pass
+    """
+    Drawing the board to make it visible to the player:
+    """
+    for row in board:
+        # Adding border to each element
+        printable_row = "| "
+        # Concatenating the element with its border
+        for element in row:
+            printable_row += str(element)
+            printable_row += " | "
+        print(printable_row)
 
 
 def spawn_number():
-    pass
+    """
+    Creating the sequence that spawns numbers for each turn
+    """
+    # Creating a list of the empty elements on the board
+    empty_elements = []
+    # For each row
+    for i in range(len(board)):
+        # For each column
+        for j in range(len(board[0])):
+            # If the value of the element == 0
+            if board[i][j] == 0:
+                # they are added to the empty elements list
+                empty_elements.append([i, j])
+    # Out of this empty elements list, a pair is chosen
+    random_row, random_col = random.choice(empty_elements)
+    # Generate random number - 2 or 4
+    spawned_number = random.choices([2, 4], [9, 1])[0]
+    # Set the random number to the random empty spot
+    board[random_row][random_col] = spawned_number
 
 
 def specify_direction():
@@ -19,7 +56,7 @@ def combine_numbers():
 
 
 def check_if_board_full():
-    return True
+    return False
 
 
 def check_if_adjacent_num():
@@ -31,10 +68,10 @@ def present_endgame():
 
 
 if __name__ == '__main__':
-    draw_board()
     spawn_number()
     spawn_number()
     while True:
+        draw_board()
         while True:
             direction = specify_direction()
             if direction:
