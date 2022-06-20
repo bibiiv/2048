@@ -54,6 +54,7 @@ def specify_direction():
             print("Not a valid input! Please select w, s, a or d!")
 
 
+
 def shift_numbers_left(row):
     """Makes the left shift movement"""
     # Creates an empty list for the modified row
