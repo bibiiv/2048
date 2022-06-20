@@ -1,5 +1,7 @@
 import random
 
+DIRECTIONS = ["w", "a", "s", "d"]
+
 # Generating the storage for the 4x4 board
 board = [[0, 0, 0, 0],
          [0, 0, 0, 0],
@@ -44,11 +46,60 @@ def spawn_number():
 
 
 def specify_direction():
-    return True
+    while True:
+        direction = input("Please select direction for your move!")
+        if direction.lower() in DIRECTIONS:
+            return direction
+        else:
+            print("Not a valid input! Please select w, s, a or d!")
 
 
-def shift_numbers():
-    pass
+def shift_numbers_left(row):
+    """Makes the left shift movement"""
+    # Creates an empty list for the modified row
+    shifted_row = []
+    for element in row:
+        # for every element in the row
+        if element != 0:
+            # gets the non-zero element
+            shifted_row.append(element)
+            # adds them to the list first
+    while len(shifted_row) < 4:
+        # while the lenght of the row is less than 4,
+        # the row is filled with zeroes
+        shifted_row.append(0)
+    return shifted_row
+
+
+def shift_numbers_right(row):
+    """ Makes the right shift movement"""
+    # creates an empty list for the modified row
+    shifted_row = []
+    # counts how many zeroes are present
+    zeroes = row.count(0)
+    # adds the zeroes to the empty list
+    for _ in range(zeroes):
+        shifted_row.append(0)
+    # adds the non-zero numbers to the list
+    for element in row:
+        if element != 0:
+            shifted_row.append(element)
+    return shifted_row
+
+
+def shift_numbers(direction):
+    if direction == "w":
+        pass
+    if direction == "a":
+        for i in range(len(board)):
+            board[i] = shift_numbers_left(board[i])
+    if direction == "s":
+        pass
+    if direction == "d":
+        for i in range(len(board)):
+            board[i] = shift_numbers_right(board[i])
+    for row in board:
+        pass
 
 
 def combine_numbers():
@@ -73,12 +124,12 @@ if __name__ == '__main__':
     while True:
         draw_board()
         while True:
-            direction = specify_direction()
-            if direction:
+            specified_direction = specify_direction()
+            if specified_direction:
                 break
-        shift_numbers()
+        shift_numbers(specified_direction)
         combine_numbers()
-        shift_numbers()
+        shift_numbers(specified_direction)
         if check_if_board_full():
             if check_if_adjacent_num():
                 continue
